@@ -14,7 +14,7 @@
     </parent>
     <groupId>krutika.springframework</groupId>
     <artifactId>pet-clinic</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
     <name>pet-clinic</name>
     <description>Spring Pet Clinic Project</description>
 
@@ -90,6 +90,6 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:krutikapatil1/pet-clinic-vuejs.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>pet-clinic-0.0.2</tag>
     </scm>
 </project>
