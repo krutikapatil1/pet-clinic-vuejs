@@ -14,7 +14,7 @@
     </parent>
     <groupId>krutika.springframework</groupId>
     <artifactId>pet-clinic</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.3</version>
     <name>pet-clinic</name>
     <description>Spring Pet Clinic Project</description>
 
@@ -83,6 +83,10 @@
                 <version>2.5.3</version>
                 <configuration>
                     <goals>install</goals>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <checkModificationExcludes>
+                        <checkModificationExclude>pom.xml</checkModificationExclude>
+                    </checkModificationExcludes>
                 </configuration>
             </plugin>
         </plugins>
@@ -90,6 +94,6 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:krutikapatil1/pet-clinic-vuejs.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>pet-clinic-0.0.3</tag>
     </scm>
 </project>
