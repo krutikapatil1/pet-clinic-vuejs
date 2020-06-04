@@ -8,6 +8,7 @@
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
                     <b-nav-item to="/vets" active-class="active">Vets</b-nav-item>
+                    <b-nav-item to="/owners" active-class="active">Owners</b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
