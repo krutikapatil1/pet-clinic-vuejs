@@ -1,7 +1,7 @@
 package krutika.springframework.petclinic.services.map;
 
 import krutika.springframework.petclinic.model.Owner;
-import krutika.springframework.petclinic.services.BaseService;
+import krutika.springframework.petclinic.services.OwnerService;
 
 import java.util.Set;
 
@@ -9,7 +9,7 @@ import java.util.Set;
  * @author : Krutika Patil
  * @since : 6/4/2020, Thu
  **/
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements BaseService<Owner, Long> {
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
     @Override
     public Set<Owner> findAll() {
         return super.findAll();
@@ -33,5 +33,10 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     @Override
     public void deletebyId(Long id) {
         super.deleteById(id);
+    }
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
     }
 }

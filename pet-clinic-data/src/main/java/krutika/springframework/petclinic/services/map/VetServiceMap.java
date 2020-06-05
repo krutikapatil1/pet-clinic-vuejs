@@ -2,6 +2,7 @@ package krutika.springframework.petclinic.services.map;
 
 import krutika.springframework.petclinic.model.Vet;
 import krutika.springframework.petclinic.services.BaseService;
+import krutika.springframework.petclinic.services.VetService;
 
 import java.util.Set;
 
@@ -9,7 +10,7 @@ import java.util.Set;
  * @author : Krutika Patil
  * @since : 6/4/2020, Thu
  **/
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements BaseService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {
         return super.findAll();
