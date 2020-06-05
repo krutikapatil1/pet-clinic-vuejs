@@ -1,4 +1,4 @@
-package krutika.springframework.petclinic.services.bootstrap;
+package krutika.springframework.petclinic.bootstrap;
 
 import krutika.springframework.petclinic.model.Owner;
 import krutika.springframework.petclinic.model.Vet;
