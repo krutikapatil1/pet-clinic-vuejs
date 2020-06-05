@@ -2,6 +2,7 @@ package krutika.springframework.petclinic.services.map;
 
 import krutika.springframework.petclinic.model.Owner;
 import krutika.springframework.petclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import java.util.Set;
  * @author : Krutika Patil
  * @since : 6/4/2020, Thu
  **/
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
     @Override
     public Set<Owner> findAll() {
