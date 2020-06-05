@@ -2,7 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12">
-                <h2>Home Page</h2>
+                <br>
+                <h3>Home Page</h3>
             </div>
         </div>
     </div>
