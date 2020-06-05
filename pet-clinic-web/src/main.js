@@ -5,12 +5,15 @@ import VueRouter from 'vue-router';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import {routes} from './routes';
+import axios from 'axios';
 
 Vue.config.productionTip = false
 Vue.config.devtools = true;
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueRouter);
+
+axios.defaults.baseURL="http://localhost:8080";
 
 const router = new VueRouter({
   mode: 'history',
