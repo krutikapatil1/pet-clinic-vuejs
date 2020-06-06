@@ -9,9 +9,7 @@ import java.time.LocalDate;
 public class Visit extends BaseEntity{
 
     private LocalDate data;
-
     private String description;
-
     private Pet pet;
 
     public LocalDate getData() {
