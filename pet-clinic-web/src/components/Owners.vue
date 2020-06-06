@@ -5,7 +5,7 @@
                 <br>
                 <h3>List of Owners</h3>
                 <br>
-                <b-table :items="owners"></b-table>
+                <b-table striped hover head-variant="dark" :items="owners"></b-table>
             </div>
         </div>
     </div>
