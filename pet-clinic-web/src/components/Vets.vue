@@ -5,7 +5,7 @@
                 <br>
                 <h3>List of Vets</h3>
                 <br>
-                <b-table :items="vets"></b-table>
+                <b-table striped hover head-variant="dark" :items="vets"></b-table>
             </div>
         </div>
     </div>
