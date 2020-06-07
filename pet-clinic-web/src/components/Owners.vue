@@ -5,27 +5,28 @@
                 <br>
                 <h3>List of Owners</h3>
                 <br>
-                <b-table striped hover head-variant="dark" :items="owners"></b-table>
+<!--                <b-table striped hover head-variant="dark" :items="owners"></b-table>-->
+                <alert class="alert-warning">Not Implemented Yet!!</alert>
             </div>
         </div>
     </div>
 </template>
 <script>
-    import axios from 'axios';
+    //import axios from 'axios';
     export default {
         data() {
             return {
                 owners: []
             }
         },
-        created() {
-            axios.get('/getOwners').then(res=> {
-                console.log(res.data);
-                this.owners = res.data;
-            })
-            .catch(error => {
-                console.log(error);
-            })
-        }
+        // created() {
+        //     axios.get('/getOwners').then(res=> {
+        //         console.log(res.data);
+        //         this.owners = res.data;
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     })
+        // }
     }
 </script>

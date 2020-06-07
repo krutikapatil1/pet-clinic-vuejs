@@ -21,8 +21,8 @@ public class OwnersController {
         this.ownerService = ownerService;
     }
 
-    @RequestMapping(value = "/getOwners", method = RequestMethod.GET)
-    public Set<Owner> getOwners() {
+    @RequestMapping(value = "/findOwners", method = RequestMethod.GET)
+    public Set<Owner> findOwners() {
         Set<Owner> owners = ownerService.findAll();
         return owners;
     }
