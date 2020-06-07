@@ -23,6 +23,7 @@ public class OwnersController {
 
     @RequestMapping(value = "/getOwners", method = RequestMethod.GET)
     public Set<Owner> getOwners() {
-        return ownerService.findAll();
+        Set<Owner> owners = ownerService.findAll();
+        return owners;
     }
 }
