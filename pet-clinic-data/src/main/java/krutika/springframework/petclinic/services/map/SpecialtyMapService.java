@@ -1,7 +1,7 @@
 package krutika.springframework.petclinic.services.map;
 
 import krutika.springframework.petclinic.model.Specialty;
-import krutika.springframework.petclinic.services.SpecialtiesService;
+import krutika.springframework.petclinic.services.SpecialtyService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -11,7 +11,7 @@ import java.util.Set;
  * @since : 6/6/2020, Sat
  **/
 @Service
-public class SpecialtiesMapService extends AbstractMapService<Specialty, Long> implements SpecialtiesService {
+public class SpecialtyMapService extends AbstractMapService<Specialty, Long> implements SpecialtyService {
     @Override
     public Set<Specialty> findAll() {
         return super.findAll();
