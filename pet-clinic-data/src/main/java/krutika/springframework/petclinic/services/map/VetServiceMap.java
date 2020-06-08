@@ -51,7 +51,7 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
     }
 
     @Override
-    public void deletebyId(Long id) {
+    public void deleteById(Long id) {
         super.deleteById(id);
     }
 }
