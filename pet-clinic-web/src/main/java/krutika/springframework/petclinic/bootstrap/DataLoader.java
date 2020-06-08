@@ -5,10 +5,13 @@ import krutika.springframework.petclinic.model.Pet;
 import krutika.springframework.petclinic.model.PetType;
 import krutika.springframework.petclinic.model.Specialty;
 import krutika.springframework.petclinic.model.Vet;
+import krutika.springframework.petclinic.model.Visit;
 import krutika.springframework.petclinic.services.OwnerService;
 import krutika.springframework.petclinic.services.PetTypeService;
 import krutika.springframework.petclinic.services.SpecialtyService;
 import krutika.springframework.petclinic.services.VetService;
+import krutika.springframework.petclinic.services.VisitService;
+import net.bytebuddy.description.modifier.Visibility;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -25,12 +28,15 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService,
+                      SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -87,6 +93,12 @@ public class DataLoader implements CommandLineRunner {
         jonsPet.setOwner(owner2);
         owner2.getPets().add(jonsPet);
         ownerService.save(owner2);
+
+        Visit visit = new Visit();
+        visit.setPet(samsPet);
+        visit.setDate(LocalDate.now());
+        visit.setDescription("Sneezy dog");
+        visitService.save(visit);
 
         System.out.println("Loaded Owners....");
 
