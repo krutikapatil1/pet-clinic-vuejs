@@ -1,10 +1,12 @@
 package krutika.springframework.petclinic.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.time.LocalDate;
 
 public class Pet extends BaseEntity{
     private String name;
     private PetType petType;
+    @JsonBackReference
     private Owner owner;
     private LocalDate birthDate;
 

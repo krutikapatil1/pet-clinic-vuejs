@@ -1,5 +1,7 @@
 package krutika.springframework.petclinic.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,6 +10,7 @@ public class Owner extends Person{
     private String address;
     private String city;
     private String telephone;
+    @JsonManagedReference
     private Set<Pet> pets = new HashSet<>();
 
     public String getAddress() {
