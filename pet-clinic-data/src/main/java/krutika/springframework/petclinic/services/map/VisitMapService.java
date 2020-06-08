@@ -2,6 +2,7 @@ package krutika.springframework.petclinic.services.map;
 
 import krutika.springframework.petclinic.model.Visit;
 import krutika.springframework.petclinic.services.VisitService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -11,6 +12,7 @@ import java.util.Set;
  * @since : 6/8/2020, Mon
  **/
 @Service
+@Profile({"default", "map"})
 public class VisitMapService extends AbstractMapService<Visit, Long> implements VisitService {
     @Override
     public Set<Visit> findAll() {
