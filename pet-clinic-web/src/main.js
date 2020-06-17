@@ -16,7 +16,7 @@ Vue.use(VueRouter);
 
 axios.defaults.baseURL="http://localhost:8080";
 
-const router = new VueRouter({
+export const router = new VueRouter({
   mode: 'history',
   routes
 })
