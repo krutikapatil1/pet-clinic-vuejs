@@ -145,7 +145,7 @@ Desktop.ini
 
 .DS_Store
 node_modules/
-dist
+/dist/
 public/
 
 # local env files

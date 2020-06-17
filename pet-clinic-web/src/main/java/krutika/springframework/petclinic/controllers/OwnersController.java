@@ -4,6 +4,8 @@ import krutika.springframework.petclinic.model.Owner;
 import krutika.springframework.petclinic.services.OwnerService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,5 +43,11 @@ public class OwnersController {
     public List<Owner> findAllByLastNameLike(@PathVariable String lastName) {
         List<Owner> owners = ownerService.findAllByLastNameLike('%' +lastName + '%');
         return owners;
+    }
+
+    @PutMapping(value = "addOwner")
+    public Owner addOwner(@RequestBody Owner owner) {
+        Owner result = ownerService.save(owner);
+        return result;
     }
 }

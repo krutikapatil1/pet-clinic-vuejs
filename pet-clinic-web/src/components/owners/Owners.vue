@@ -1,120 +1,173 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <br>
-                <h3>Search Owners</h3>
-                <br>
-<!--                <b-table striped hover head-variant="dark" :items="owners"></b-table>-->
-<!--                <alert class="alert alert-warning">Not Implemented Yet!!</alert>-->
-                <b-form>
-                    <b-form-group
-                            id="input-group-1"
-                            label="Owner Lastname"
-                            label-for="input-1"
-                    >
-                        <b-form-input
-                                id="input-1"
-                                v-model="lastName"
-                                required
-                                placeholder="Enter lastname"
-                        ></b-form-input>
-                    </b-form-group>
-                   <p v-if="showError" style="color: red">No results found!</p>
-                    <button class="btn btn-dark" @click.prevent="searchOwners" :disabled="lastName == ''">Find Owners</button>
-                </b-form>
+        <div v-if="addNewOwner">
+            <div class="row mt-5">
+                <div class="col-md-12 col-xs-12 col-sm-12">
+                    <h3>Add/Update Owner</h3>
+                    <b-form>
+                        <b-form-group id="input-group-2" label="FirstName" label-for="input-2">
+                            <b-form-input
+                                    id="input-2"
+                                    v-model="selectedOwner.firstName"
+                                    required
+                            ></b-form-input>
+                        </b-form-group>
+                        <b-form-group id="input-group-3" label="LastName" label-for="input-3">
+                            <b-form-input
+                                    id="input-3"
+                                    v-model="selectedOwner.lastName"
+                                    required
+                            ></b-form-input>
+                        </b-form-group>
+                        <b-form-group id="input-group-4" label="Address" label-for="input-4">
+                            <b-form-input
+                                    id="input-4"
+                                    v-model="selectedOwner.address"
+                                    required
+                            ></b-form-input>
+                        </b-form-group>
+                        <b-form-group id="input-group-5" label="City" label-for="input-5">
+                            <b-form-input
+                                    id="input-5"
+                                    v-model="selectedOwner.city"
+                                    required
+                            ></b-form-input>
+                        </b-form-group>
+                        <b-form-group id="input-group-6" label="Telephone" label-for="input-6">
+                            <b-form-input
+                                    id="input-6"
+                                    v-model="selectedOwner.telephone"
+                                    required
+                            ></b-form-input>
+                        </b-form-group>
+                    </b-form>
+                    <button class="btn btn-dark" @click.prevent="addOwner">Submit</button>
+                    <button class="btn btn-dark ml-2" @click="addNewOwner = false">Cancel</button>
+                </div>
             </div>
         </div>
-        <div v-if="searchResults.length > 0">
-            <div class="row mt-5" v-if="showListView">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <b-table hover striped :items="items" :fields="fields" @row-clicked="expandRow" style="cursor: pointer"></b-table>
+        <div v-else>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="row mt-5">
+                        <div class="col-md-3 col-xs-3 col-sm-3">
+                            <h3>Search Owner</h3>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-9 text-right">
+                            <button class="btn btn-dark" @click="selectedOwner = {};addNewOwner = true">Add Owner</button>
+                        </div>
+                    </div>
+                    <!--                <b-table striped hover head-variant="dark" :items="owners"></b-table>-->
+                    <!--                <alert class="alert alert-warning">Not Implemented Yet!!</alert>-->
+                    <b-form>
+                        <b-form-group
+                                id="input-group-1"
+                                label="Owner Lastname"
+                                label-for="input-1"
+                        >
+                            <b-form-input
+                                    id="input-1"
+                                    v-model="lastName"
+                                    required
+                                    placeholder="Enter lastname"
+                            ></b-form-input>
+                        </b-form-group>
+                        <p v-if="showError" style="color: red">No results found!</p>
+                        <button class="btn btn-dark" @click.prevent="searchOwners" :disabled="lastName == ''">Find Owners</button>
+                    </b-form>
                 </div>
             </div>
-            <div class="mt-5" v-else>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <b-card
-                                border-variant="success"
-                                header-bg-variant="success"
-                                header-text-variant="white"
-                                header="Owner Information"
-                                header-tag="header"
-                            >
-                            <b-card-text>
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-6 col-sm-6">
-                                        <h6>Name</h6>
-                                    </div>
-                                    <div class="col-md-6 col-xs-6 col-sm-6">
-                                        <p>{{selectedOwner.name}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-6 col-sm-6">
-                                        <h6>Address</h6>
-                                    </div>
-                                    <div class="col-md-6 col-xs-6 col-sm-6">
-                                        <p>{{selectedOwner.address}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-6 col-sm-6">
-                                        <h6>City</h6>
-                                    </div>
-                                    <div class="col-md-6 col-xs-6 col-sm-6">
-                                        <p>{{selectedOwner.city}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-6 col-sm-6">
-                                        <h6>Telephone</h6>
-                                    </div>
-                                    <div class="col-md-6 col-xs-6 col-sm-6">
-                                        <p>{{selectedOwner.telephone}}</p>
-                                    </div>
-                                </div>
-                            </b-card-text>
-                        </b-card>
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <b-card
-                                border-variant="success"
-                                header-bg-variant="success"
-                                header-text-variant="white"
-                                header="Pets and Visits"
-                                header-tag="header"
-                        >
-                            <b-text>
-                                <div class="row">
-                                    <div class="col-md-12 col-xs-12 col-sm-12">
-                                        <ul v-for="(petVisit, index) in selectedOwnerPetVisitInfo" :key="index">
-                                            <li>
-                                                <div>
-                                                    <p><strong>Name:</strong> {{petVisit.name}}</p>
-                                                    <p><strong>Type:</strong> {{petVisit.type}}</p>
-                                                    <p><strong>Birth Date:</strong> {{petVisit.birthDate}}</p>
-                                                </div>
-                                            </li>
-                                            <ul v-for="(visit, visitIndex) in petVisit.visits" :key="visitIndex">
-                                                <li>
-                                                    <div>
-                                                        <p><strong>Visit Date:</strong> {{visit.visitDate}}</p>
-                                                        <p><strong>Visit Description:</strong> {{visit.visitDescription}}</p>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </ul>
-                                    </div>
-                                 </div>
-                            </b-text>
-                        </b-card>
+            <div v-if="searchResults.length > 0">
+                <div class="row mt-5" v-if="showListView">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <b-table hover striped :items="items" :fields="fields" @row-clicked="expandRow" style="cursor: pointer"></b-table>
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-md-3 col-sm-3 col-xs-3 mx-auto">
-                        <button class="btn btn-dark">Edit Owner</button>
-                        <button class="btn btn-dark ml-2">Add New Pet</button>
+                <div class="mt-5" v-else>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <b-card
+                                    border-variant="success"
+                                    header-bg-variant="success"
+                                    header-text-variant="white"
+                                    header="Owner Information"
+                                    header-tag="header"
+                            >
+                                <b-card-text>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-6 col-sm-6">
+                                            <h6>Name</h6>
+                                        </div>
+                                        <div class="col-md-6 col-xs-6 col-sm-6">
+                                            <p>{{selectedOwner.firstName}} {{selectedOwner.lastName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-6 col-sm-6">
+                                            <h6>Address</h6>
+                                        </div>
+                                        <div class="col-md-6 col-xs-6 col-sm-6">
+                                            <p>{{selectedOwner.address}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-6 col-sm-6">
+                                            <h6>City</h6>
+                                        </div>
+                                        <div class="col-md-6 col-xs-6 col-sm-6">
+                                            <p>{{selectedOwner.city}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xs-6 col-sm-6">
+                                            <h6>Telephone</h6>
+                                        </div>
+                                        <div class="col-md-6 col-xs-6 col-sm-6">
+                                            <p>{{selectedOwner.telephone}}</p>
+                                        </div>
+                                    </div>
+                                </b-card-text>
+                            </b-card>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <b-card
+                                    border-variant="success"
+                                    header-bg-variant="success"
+                                    header-text-variant="white"
+                                    header="Pets and Visits"
+                                    header-tag="header"
+                            >
+                                <b-text>
+                                    <div class="row">
+                                        <div class="col-md-12 col-xs-12 col-sm-12">
+                                            <ul v-for="(petVisit, index) in selectedOwnerPetVisitInfo" :key="index">
+                                                <li>
+                                                    <div>
+                                                        <p><strong>Name:</strong> {{petVisit.name}}</p>
+                                                        <p><strong>Type:</strong> {{petVisit.type}}</p>
+                                                        <p><strong>Birth Date:</strong> {{petVisit.birthDate}}</p>
+                                                    </div>
+                                                </li>
+                                                <ul v-for="(visit, visitIndex) in petVisit.visits" :key="visitIndex">
+                                                    <li>
+                                                        <div>
+                                                            <p><strong>Visit Date:</strong> {{visit.visitDate}}</p>
+                                                            <p><strong>Visit Description:</strong> {{visit.visitDescription}}</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </b-text>
+                            </b-card>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-3 col-sm-3 col-xs-3 mx-auto">
+                            <button class="btn btn-dark" @click="addNewOwner=true">Edit Owner</button>
+                            <button class="btn btn-dark ml-2">Add New Pet</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -133,7 +186,8 @@
                 showListView: false,
                 selectedOwner: {},
                 selectedOwnerPetVisitInfo: [],
-                showError: false
+                showError: false,
+                addNewOwner: false
             }
         },
         methods: {
@@ -154,7 +208,8 @@
                     else if (this.searchResults.length == 1) {
                         this.searchResults.forEach(result => {
                             this.selectedOwner.id = result.id;
-                            this.selectedOwner.name = result.firstName + ' ' +result.lastName;
+                            this.selectedOwner.firstName = result.firstName;
+                            this.selectedOwner.lastName = result.lastName;
                             this.selectedOwner.address = result.address;
                             this.selectedOwner.city = result.city;
                             this.selectedOwner.telephone = result.telephone;
@@ -187,7 +242,12 @@
                 })
             },
             expandRow(row) {
-                this.selectedOwner = row;
+                this.selectedOwner.id = row.id;
+                this.selectedOwner.firstName = row.name.split(' ')[0];
+                this.selectedOwner.lastName = row.name.split(' ')[1];
+                this.selectedOwner.address = row.address;
+                this.selectedOwner.city = row.city;
+                this.selectedOwner.telephone = row.telephone;
                 this.loadSelectedOwnerPetsAndVisits();
                 this.showListView = false;
             },
@@ -208,6 +268,18 @@
                         petVisitItem.visits.push(visitItem);
                     });
                     this.selectedOwnerPetVisitInfo.push(petVisitItem);
+                })
+            },
+            addOwner() {
+                axios.put('/owners/addOwner', this.selectedOwner).then(res => {
+                    console.log(res.data);
+                    this.searchResults = [];
+                    this.searchResults.push(res.data);
+                    this.selectedOwner = res.data;
+                    this.addNewOwner = false;
+                    this.showListView = false;
+                }).catch(error => {
+                    console.log(error);
                 })
             }
         }
