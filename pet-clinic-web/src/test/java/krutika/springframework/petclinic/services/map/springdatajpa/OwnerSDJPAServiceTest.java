@@ -12,7 +12,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -46,6 +48,17 @@ class OwnerSDJPAServiceTest {
         Owner result = service.findByLastName(LAST_NAME);
         assertEquals(LAST_NAME, result.getLastName());
         Mockito.verify(ownerRepository, Mockito.times(1)).findByLastName(LAST_NAME);
+    }
+
+    @Test
+    void findAllByLastNameLike() {
+        List<Owner> owners = new ArrayList<>();
+        owners.add(Owner.builder().id(1L).lastName(LAST_NAME).build());
+        owners.add(Owner.builder().id(2L).lastName(LAST_NAME).build());
+        Mockito.when(ownerRepository.findAllByLastNameLike(LAST_NAME)).thenReturn(owners);
+        List<Owner> result = service.findAllByLastNameLike(LAST_NAME);
+        assertEquals(LAST_NAME, result.get(0).getLastName());
+        Mockito.verify(ownerRepository, Mockito.times(1)).findAllByLastNameLike(LAST_NAME);
     }
 
     @Test

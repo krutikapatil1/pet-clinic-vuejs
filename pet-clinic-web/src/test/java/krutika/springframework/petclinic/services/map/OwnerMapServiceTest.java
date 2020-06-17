@@ -4,6 +4,7 @@ import krutika.springframework.petclinic.model.Owner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,6 +31,12 @@ class OwnerMapServiceTest {
     void findAll() {
         Set<Owner> ownerSet = ownerMapService.findAll();
         assertEquals(1, ownerSet.size());
+    }
+
+    @Test
+    void findAllByLastNameLike() {
+        List<Owner> owners = ownerMapService.findAllByLastNameLike(lastName);
+        assertEquals(lastName, owners.get(0).getLastName());
     }
 
     @Test

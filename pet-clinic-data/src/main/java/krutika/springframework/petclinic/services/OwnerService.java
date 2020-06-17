@@ -1,7 +1,8 @@
 package krutika.springframework.petclinic.services;
 
 import krutika.springframework.petclinic.model.Owner;
-import java.util.Set;
+
+import java.util.List;
 
 /**
  * @author : Krutika Patil
@@ -10,4 +11,6 @@ import java.util.Set;
 public interface OwnerService extends BaseService<Owner, Long> {
 
     Owner findByLastName(String lastName);
+
+    List<Owner> findAllByLastNameLike(String lastName);
 }

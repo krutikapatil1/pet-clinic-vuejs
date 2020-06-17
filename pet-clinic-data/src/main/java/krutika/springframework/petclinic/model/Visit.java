@@ -1,5 +1,6 @@
 package krutika.springframework.petclinic.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,5 +35,6 @@ public class Visit extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "pet_id")
+    @JsonBackReference
     private Pet pet;
 }

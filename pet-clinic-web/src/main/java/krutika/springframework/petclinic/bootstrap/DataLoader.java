@@ -11,7 +11,6 @@ import krutika.springframework.petclinic.services.PetTypeService;
 import krutika.springframework.petclinic.services.SpecialtyService;
 import krutika.springframework.petclinic.services.VetService;
 import krutika.springframework.petclinic.services.VisitService;
-import net.bytebuddy.description.modifier.Visibility;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -94,11 +93,16 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(jonsPet);
         ownerService.save(owner2);
 
-        Visit visit = new Visit();
-        visit.setPet(samsPet);
-        visit.setDate(LocalDate.now());
-        visit.setDescription("Sneezy dog");
-        visitService.save(visit);
+        Visit visit1 = new Visit();
+        visit1.setPet(samsPet);
+        visit1.setDate(LocalDate.now());
+        visit1.setDescription("Sneezy dog");
+        Visit visit2 = new Visit();
+        visit2.setPet(jonsPet);
+        visit2.setDate(LocalDate.now());
+        visit2.setDescription("Sleepy cat");
+        visitService.save(visit1);
+        visitService.save(visit2);
 
         System.out.println("Loaded Owners....");
 

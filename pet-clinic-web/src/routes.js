@@ -1,6 +1,6 @@
 import Vets from './components/Vets.vue';
 import Home from './components/Home.vue';
-import Owners from './components/Owners.vue';
+import Owners from './components/owners/Owners.vue';
 import Error from './components/common/Error.vue';
 
 export const routes = [
