@@ -21,7 +21,7 @@
                         ></b-form-input>
                     </b-form-group>
                    <p v-if="showError" style="color: red">No results found!</p>
-                    <button class="btn btn-primary" @click.prevent="searchOwners" :disabled="lastName == ''">Find Owners</button>
+                    <button class="btn btn-dark" @click.prevent="searchOwners" :disabled="lastName == ''">Find Owners</button>
                 </b-form>
             </div>
         </div>
@@ -113,8 +113,8 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-3 col-sm-3 col-xs-3 mx-auto">
-                        <button class="btn btn-danger">Edit Owner</button>
-                        <button class="btn btn-primary ml-2">Add New Pet</button>
+                        <button class="btn btn-dark">Edit Owner</button>
+                        <button class="btn btn-dark ml-2">Add New Pet</button>
                     </div>
                 </div>
             </div>
