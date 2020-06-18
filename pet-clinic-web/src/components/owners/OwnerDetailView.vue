@@ -63,7 +63,7 @@
                 <button class="btn btn-dark" @click.prevent="editOwner">Edit Owner</button>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-2 mx-auto">
-                <button class="btn btn-dark ml-2">Add Pet</button>
+                <button class="btn btn-dark ml-2" @click.prevent="addPet">Add Pet</button>
             </div>
         </div>
     </div>
@@ -79,6 +79,9 @@
         methods: {
             editOwner() {
                 this.$router.push({path: '/editOwner'});
+            },
+            addPet() {
+                this.$router.push({path: '/addPet'});
             }
         }
     }
