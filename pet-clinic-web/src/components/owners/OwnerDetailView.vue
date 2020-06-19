@@ -40,9 +40,11 @@
                             header-text-variant="white"
                     >
                         <b-card-text>
-                            <ul v-for="(petVisit, index) in selectedOwner.pets" :key="index">
+                            <ul v-for="(petVisit) in selectedOwner.pets" :key="petVisit.id">
                                 <li>
-                                    <p><strong>Pet Name:</strong> {{petVisit.name}}</p>
+                                    <p><strong>Pet Name:</strong> {{petVisit.name}}
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor: pointer" @click="editPet(petVisit.id)"></i>
+                                        <i class="fa fa-trash-o" aria-hidden="true" style="cursor:pointer" @click="deletePet(petVisit.id)"></i></p>
                                     <p><strong>Pet Type:</strong> {{petVisit.petType.name}}</p>
                                     <p><strong>Birth Date:</strong> {{petVisit.birthDate}}</p>
                                     <ul v-for="(visit, visitIndex) in petVisit.visits" :key="visitIndex">
@@ -82,6 +84,12 @@
             },
             addPet() {
                 this.$router.push({path: '/addPet'});
+            },
+            editPet(id) {
+                this.$router.push({path: '/editPet/' +id});
+            },
+            deletePet(id) {
+                this.$store.dispatch('deletePet', id);
             }
         }
     }

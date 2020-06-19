@@ -7,6 +7,7 @@ import OwnerDetailView from "./components/owners/OwnerDetailView.vue";
 import AddOwner from "./components/owners/AddOwner.vue";
 import EditOwner from "./components/owners/EditOwner.vue";
 import AddPet from "./components/owners/AddPet.vue";
+import EditPet from "./components/owners/EditPet.vue";
 import Error from './components/common/Error.vue';
 
 export const routes = [
@@ -20,5 +21,6 @@ export const routes = [
     {path: '/addOwner', component: AddOwner, name: AddOwner},
     {path: '/editOwner', component: EditOwner, name: EditOwner},
     {path: '/addPet', component: AddPet, name: AddPet},
+    {path: '/editPet/:id', component: EditPet, name: EditPet},
     {path: '/error', component: Error, name: Error}
 ]

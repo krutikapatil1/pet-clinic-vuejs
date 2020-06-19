@@ -33,7 +33,11 @@
                             label="PetType"
                             label-for="input-4"
                     >
-                        <b-form-select v-model="pet.petType.name" :options="options"></b-form-select>
+                        <b-form-input
+                                id="input-3"
+                                :value="pet.petType.name"
+                                disabled
+                        ></b-form-input>
                     </b-form-group>
                     <button class="btn btn-dark" @click.prevent="addPet">Submit</button>
                 </b-form>
@@ -46,17 +50,11 @@
     import { mapGetters } from 'vuex';
     import axios from 'axios';
     export default {
-        name: "AddPet",
+        name: "EditPet",
         data() {
             return {
-                pet: {
-                    name: '',
-                    petType: {
-                        name: ''
-                    },
-                    birthDate: ''
-                },
                 options: [],
+                pet: {}
             }
         },
         computed: {
@@ -68,7 +66,10 @@
                 option.value = petType;
                 option.text = petType;
                 this.options.push(option);
-            })
+            });
+            let pets = this.selectedOwner.pets;
+            pets.filter(pet => pet.id !== this.$route.params.id);
+            this.pet = pets[0];
         },
         methods: {
             addPet() {

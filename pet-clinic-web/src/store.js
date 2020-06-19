@@ -9,7 +9,8 @@ Vue.config.devtools = true;
 export default new Vuex.Store({
     state: {
         ownersSearchResults: [],
-        selectedOwner: {}
+        selectedOwner: {},
+        petTypes: []
     },
     mutations: {
         'LOAD_OWNERS_SEARCH_RESULTS': (state, payload) => {
@@ -36,6 +37,9 @@ export default new Vuex.Store({
         'RESET_DATA': (state) => {
             state.ownersSearchResults = [];
             state.selectedOwner = {};
+        },
+        'STORE_PET_TYPES': (state, payload) => {
+            state.petTypes = payload;
         }
     },
     actions: {
@@ -59,6 +63,23 @@ export default new Vuex.Store({
         },
         resetData: ({commit}) => {
             commit('RESET_DATA');
+        },
+        getAllPetTypes: ({commit}) => {
+            axios.get('/petTypes/getAll').then(res => {
+                console.log(res.data);
+                commit('STORE_PET_TYPES', res.data);
+            })
+                .catch(error => {
+                    console.log(error);
+                })
+        },
+        deletePet: ({commit}, id) => {
+            axios.delete('/pets/deletePet/' +id).then(res=> {
+                console.log(res.data);
+                commit('SET_SELECTED_OWNER', res.data);
+            }).catch(error => {
+                console.log(error);
+            })
         }
     },
     getters: {
@@ -67,6 +88,9 @@ export default new Vuex.Store({
         },
         selectedOwner: (state) => {
             return state.selectedOwner;
+        },
+        petTypes: (state) => {
+            return state.petTypes;
         }
     }
 })
