@@ -1,6 +1,7 @@
 package krutika.springframework.petclinic.services.map.springdatajpa;
 
 import krutika.springframework.petclinic.model.Owner;
+import krutika.springframework.petclinic.model.Pet;
 import krutika.springframework.petclinic.repositories.OwnerRepository;
 import krutika.springframework.petclinic.repositories.PetRepository;
 import krutika.springframework.petclinic.repositories.PetTypeRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -50,6 +52,13 @@ public class OwnerSDJPAService implements OwnerService {
 
     @Override
     public Owner save(Owner object) {
+        if (object.getId() != null) {
+            Optional<Owner> ownerRepo = ownerRepository.findById(object.getId());
+            if (ownerRepo.isPresent()) {
+                Set<Pet> petsRepo = ownerRepo.get().getPets();
+                object.setPets(petsRepo);
+            }
+        }
         return ownerRepository.save(object);
     }
 

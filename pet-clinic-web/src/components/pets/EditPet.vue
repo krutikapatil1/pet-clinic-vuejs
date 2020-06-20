@@ -21,21 +21,20 @@
                             label="Birth Date"
                             label-for="input-3"
                     >
-                        <b-form-input
-                                id="input-3"
-                                v-model="pet.birthDate"
-                                required
-                                placeholder="Enter BirthDate"
-                        ></b-form-input>
+                        <b-form-datepicker id="example-datepicker" v-model="pet.birthDate" class="mb-2"></b-form-datepicker>
                     </b-form-group>
                     <b-form-group
                             id="input-group-4"
                             label="PetType"
                             label-for="input-4"
                     >
-                        <b-form-select v-model="pet.petType.name" :options="options"></b-form-select>
+                        <b-form-input
+                                id="input-3"
+                                :value="pet.petType.name"
+                                disabled
+                        ></b-form-input>
                     </b-form-group>
-                    <button class="btn btn-dark" @click.prevent="addPet">Submit</button>
+                    <button class="btn btn-dark" @click.prevent="editPet">Submit</button>
                 </b-form>
             </div>
         </div>
@@ -46,17 +45,11 @@
     import { mapGetters } from 'vuex';
     import axios from 'axios';
     export default {
-        name: "AddPet",
+        name: "EditPet",
         data() {
             return {
-                pet: {
-                    name: '',
-                    petType: {
-                        name: ''
-                    },
-                    birthDate: ''
-                },
                 options: [],
+                pet: {}
             }
         },
         computed: {
@@ -68,10 +61,17 @@
                 option.value = petType;
                 option.text = petType;
                 this.options.push(option);
-            })
+            });
+            let pets = this.selectedOwner.pets;
+            for (let i = 0; i<pets.length; i++) {
+                if(pets[i].id == this.$route.params.id) {
+                    this.pet = pets[i];
+                    break;
+                }
+            }
         },
         methods: {
-            addPet() {
+            editPet() {
                 axios.post('/pets/addPet/' +this.selectedOwner.id, this.pet).then(res => {
                     console.log(res.data);
                     this.$store.dispatch('setSelectedOwner', res.data);

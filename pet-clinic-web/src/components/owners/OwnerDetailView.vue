@@ -43,13 +43,17 @@
                             <ul v-for="(petVisit) in selectedOwner.pets" :key="petVisit.id">
                                 <li>
                                     <p><strong>Pet Name:</strong> {{petVisit.name}}
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor: pointer" @click="editPet(petVisit.id)"></i>
-                                        <i class="fa fa-trash-o" aria-hidden="true" style="cursor:pointer" @click="deletePet(petVisit.id)"></i></p>
+                                        <i class="fa fa-pencil-square-o ml-2" aria-hidden="true" style="cursor: pointer" @click.prevent="editPet(petVisit.id)"></i>
+                                        <i class="fa fa-trash-o ml-2" aria-hidden="true" style="cursor:pointer" @click.prevent="deletePet(petVisit.id)"></i>
+                                        <i class="fa fa-plus-circle ml-2" aria-hidden="true" style="cursor: pointer" @click.prevent="addVisit(petVisit.id)"></i> Add Visit
+                                    </p>
                                     <p><strong>Pet Type:</strong> {{petVisit.petType.name}}</p>
                                     <p><strong>Birth Date:</strong> {{petVisit.birthDate}}</p>
-                                    <ul v-for="(visit, visitIndex) in petVisit.visits" :key="visitIndex">
+                                    <ul v-for="(visit) in petVisit.visits" :key="visit.id">
                                         <li>
-                                            <p><strong>Visit Date:</strong> {{visit.date}}</p>
+                                            <p><strong>Visit Date:</strong> {{visit.date}}
+                                                <i class="fa fa-pencil-square-o ml-2" aria-hidden="true" style="cursor: pointer" @click.prevent="editVisit(petVisit.id, visit.id)"></i>
+                                            </p>
                                             <p><strong>Visit Description:</strong> {{visit.description}}</p>
                                         </li>
                                     </ul>
@@ -90,6 +94,12 @@
             },
             deletePet(id) {
                 this.$store.dispatch('deletePet', id);
+            },
+            addVisit(id) {
+                this.$router.push({path: '/addVisit/' +id});
+            },
+            editVisit(petId, visitId) {
+                this.$router.push({path: '/editVisit/' +petId + '/' +visitId});
             }
         }
     }

@@ -21,23 +21,14 @@
                             label="Birth Date"
                             label-for="input-3"
                     >
-                        <b-form-input
-                                id="input-3"
-                                v-model="pet.birthDate"
-                                required
-                                placeholder="Enter BirthDate"
-                        ></b-form-input>
+                        <b-form-datepicker id="example-datepicker" v-model="pet.birthDate" class="mb-2"></b-form-datepicker>
                     </b-form-group>
                     <b-form-group
                             id="input-group-4"
                             label="PetType"
                             label-for="input-4"
                     >
-                        <b-form-input
-                                id="input-3"
-                                :value="pet.petType.name"
-                                disabled
-                        ></b-form-input>
+                        <b-form-select v-model="pet.petType.name" :options="options"></b-form-select>
                     </b-form-group>
                     <button class="btn btn-dark" @click.prevent="addPet">Submit</button>
                 </b-form>
@@ -50,11 +41,17 @@
     import { mapGetters } from 'vuex';
     import axios from 'axios';
     export default {
-        name: "EditPet",
+        name: "AddPet",
         data() {
             return {
+                pet: {
+                    name: '',
+                    petType: {
+                        name: ''
+                    },
+                    birthDate: ''
+                },
                 options: [],
-                pet: {}
             }
         },
         computed: {
@@ -66,10 +63,7 @@
                 option.value = petType;
                 option.text = petType;
                 this.options.push(option);
-            });
-            let pets = this.selectedOwner.pets;
-            pets.filter(pet => pet.id !== this.$route.params.id);
-            this.pet = pets[0];
+            })
         },
         methods: {
             addPet() {

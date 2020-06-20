@@ -6,8 +6,10 @@ import OwnerListView from "./components/owners/OwnerListView.vue";
 import OwnerDetailView from "./components/owners/OwnerDetailView.vue";
 import AddOwner from "./components/owners/AddOwner.vue";
 import EditOwner from "./components/owners/EditOwner.vue";
-import AddPet from "./components/owners/AddPet.vue";
-import EditPet from "./components/owners/EditPet.vue";
+import AddPet from "./components/pets/AddPet.vue";
+import EditPet from "./components/pets/EditPet.vue";
+import AddVisit from "./components/visits/AddVisit.vue";
+import EditVisit from "./components/visits/EditVisit.vue";
 import Error from './components/common/Error.vue';
 
 export const routes = [
@@ -22,5 +24,7 @@ export const routes = [
     {path: '/editOwner', component: EditOwner, name: EditOwner},
     {path: '/addPet', component: AddPet, name: AddPet},
     {path: '/editPet/:id', component: EditPet, name: EditPet},
+    {path: '/addVisit/:id', component: AddVisit, name: AddVisit},
+    {path: '/editVisit/:petId/:visitId', component: EditVisit, name: EditVisit},
     {path: '/error', component: Error, name: Error}
 ]
